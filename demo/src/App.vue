@@ -1,7 +1,7 @@
 <template>
   <div id="app" role="main">
     <logo :src="require('@/assets/logo.png')" />
-    <h1>{{ msg }}</h1>
+    <h1 data-va="main header">{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
