@@ -5,7 +5,6 @@ import serve from 'rollup-plugin-serve'
 import livereload from 'rollup-plugin-livereload'
 import babel from 'rollup-plugin-babel'
 import commonJs from 'rollup-plugin-commonjs'
-import json from 'rollup-plugin-json'
 import eslint from 'rollup-plugin-eslint'
 import chokidar from 'chokidar'
 
@@ -16,7 +15,6 @@ export default {
     include: ['src/**']
   },
   plugins: [
-    json(),
     eslint({
       include: './src/**'
     }),
@@ -41,7 +39,7 @@ export default {
   output: [
     {
       name: 'VueAxe',
-      file: 'example/vue-axe.js',
+      file: 'vue-axe.js',
       format: 'umd'
     }
   ]

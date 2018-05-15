@@ -3,15 +3,13 @@ import replace from 'rollup-plugin-replace'
 import VueLoader from 'rollup-plugin-vue'
 import butternut from 'rollup-plugin-butternut'
 import babel from 'rollup-plugin-babel'
-import json from 'rollup-plugin-json'
 import commonJs from 'rollup-plugin-commonjs'
 
 export default {
   input: 'src/index.js',
   plugins: [
-    json(),
     babel({
-      exclude: 'node_modules/**'
+      exclude: './node_modules/**'
     }),
     butternut(),
     resolve(),
