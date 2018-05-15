@@ -1,8 +1,6 @@
 import resolve from 'rollup-plugin-node-resolve'
 import replace from 'rollup-plugin-replace'
 import VueLoader from 'rollup-plugin-vue'
-import serve from 'rollup-plugin-serve'
-import livereload from 'rollup-plugin-livereload'
 import babel from 'rollup-plugin-babel'
 import commonJs from 'rollup-plugin-commonjs'
 import eslint from 'rollup-plugin-eslint'
@@ -26,14 +24,6 @@ export default {
     VueLoader(),
     replace({
       'process.env.NODE_ENV': JSON.stringify('development')
-    }),
-    serve({
-      verbose: false,
-      contentBase: 'example',
-      historyApiFallback: true
-    }),
-    livereload({
-      watch: 'example'
     })
   ],
   output: [
