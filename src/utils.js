@@ -40,6 +40,7 @@ export function checkAndReport (node) {
     }
     deferred.resolve()
   })
+  return deferred.promise
 }
 
 function createDeferred () {

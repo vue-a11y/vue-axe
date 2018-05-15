@@ -18,7 +18,5 @@ export default function install (Vue, options) {
     }
   })
 
-  Vue.nextTick(() => {
-    return checkAndReport(document)
-  })
+  return Vue.nextTick().then(() => checkAndReport(document))
 }
