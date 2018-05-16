@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import VueAxe from '../../vue-axe'
+import VueAxe from '../vue-axe'
 
 if (process.env.NODE_ENV !== 'production') {
   Vue.use(VueAxe, {

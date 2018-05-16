@@ -1,7 +1,8 @@
 node_modules
-vue-axe.js
+dist
 .editorconfig
 .DS_Store
+demo/vue-axe.js
 demo/node_modules
 demo/build
 demo/package-lock.json

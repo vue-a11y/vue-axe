@@ -29,7 +29,7 @@ export default {
   output: [
     {
       name: 'VueAxe',
-      file: 'vue-axe.js',
+      file: 'demo/vue-axe.js',
       format: 'umd'
     }
   ]
