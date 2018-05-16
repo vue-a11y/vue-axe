@@ -1,6 +1,6 @@
 {
   "name": "vue-axe",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Dynamic accessibility analysis for Vue.js using axe-core",
   "main": "dist/vue-axe.js",
   "scripts": {
