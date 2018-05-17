@@ -41,9 +41,9 @@ https://github.com/dequelabs/axe-core/blob/master/doc/API.md#api-name-axeconfigu
 Create plugin file `plugins/axe.js`
 ```javascript
 import Vue from 'vue'
-import VueAxe from 'vue-axe'
 
 if (process.env.NODE_ENV !== 'production') {
+  const VueAxe = require('../vue-axe')
   Vue.use(VueAxe, {
     config: {
       // your configuration data
