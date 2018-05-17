@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
-import VueAxe from '../vue-axe'
 
 if (process.env.NODE_ENV !== 'production') {
+  const VueAxe = require('../vue-axe')
   Vue.use(VueAxe, {
     config: {
       rules: [
