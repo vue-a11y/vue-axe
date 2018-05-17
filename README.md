@@ -19,7 +19,7 @@ yarn add -D vue-axe
 import Vue from 'vue'
 
 if (process.env.NODE_ENV !== 'production') {
-  const VueAxe = require('../vue-axe')
+  const VueAxe = require('vue-axe')
   Vue.use(VueAxe, {
     config: {
       // ...
@@ -43,7 +43,7 @@ Create plugin file `plugins/axe.js`
 import Vue from 'vue'
 
 if (process.env.NODE_ENV !== 'production') {
-  const VueAxe = require('../vue-axe')
+  const VueAxe = require('vue-axe')
   Vue.use(VueAxe, {
     config: {
       // your configuration data
