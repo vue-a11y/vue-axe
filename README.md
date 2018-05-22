@@ -77,6 +77,8 @@ Vue.use(VueAxe, {
   }
 })
 ```
+## See demo
+https://vue-axe.surge.sh/
 
 ## Run the demo
 ```shell

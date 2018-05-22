@@ -9,7 +9,8 @@
     "release": "standard-version",
     "test": "node_modules/.bin/cypress run",
     "test:open": "node_modules/.bin/cypress open",
-    "projectPublish": "git push --follow-tags origin master && npm publish"
+    "projectPublish": "git push --follow-tags origin master && npm publish",
+    "deploy": "surge ./demo"
   },
   "repository": {
     "type": "git",

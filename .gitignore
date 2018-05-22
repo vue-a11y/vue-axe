@@ -4,5 +4,6 @@ dist
 .DS_Store
 demo/vue-axe.js
 demo/node_modules
-demo/build
+demo/dist
+demo/CNAME
 demo/package-lock.json
