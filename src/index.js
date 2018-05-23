@@ -1,5 +1,5 @@
 import axeCore from 'axe-core'
-import { checkAndReport } from './utils'
+import { checkAndReport, resetCache } from './utils'
 import { OPTIONS_DEFAULT } from './constants'
 
 export default function install (Vue, options) {
@@ -11,10 +11,21 @@ export default function install (Vue, options) {
 
   // Rechecking when updating specific component
   Vue.mixin({
+    methods: {
+      clearAxeConsole () {
+        console.clear()
+        resetCache()
+      }
+    },
     updated () {
+      this.clearAxeConsole()
       this.$nextTick(() => {
         checkAndReport(this.$el)
       })
+    },
+    // Used for change of route
+    beforeDestroy () {
+      this.clearAxeConsole()
     }
   })
 
