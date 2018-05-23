@@ -12,8 +12,9 @@ export function checkAndReport (node) {
   nodes.push(node)
   let deferred = createDeferred()
 
-  axeCore.run(node, { reporter: 'v2' }, (error, results) => {
+  axeCore.run(document, { reporter: 'v2' }, (error, results) => {
     if (error) deferred.reject(error)
+    if (!results) return
 
     results.violations = results.violations.filter(result => {
       result.nodes = result.nodes.filter(node => {
@@ -41,6 +42,10 @@ export function checkAndReport (node) {
     deferred.resolve()
   })
   return deferred.promise
+}
+
+export function resetCache () {
+  cache = {}
 }
 
 function createDeferred () {
