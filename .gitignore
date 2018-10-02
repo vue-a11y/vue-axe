@@ -8,3 +8,4 @@ demo/node_modules
 demo/dist
 demo/CNAME
 demo/package-lock.json
+cypress
