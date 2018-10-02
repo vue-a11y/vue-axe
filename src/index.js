@@ -7,6 +7,11 @@ export default function install (Vue, options) {
   // Browser only
   if (typeof window === 'undefined') return
 
+  options = {
+    clearConsoleOnUpdate: true,
+    ...options
+  }
+
   // Configure the format data
   axeCore.configure({ ...OPTIONS_DEFAULT.config, ...options.config })
 
@@ -15,7 +20,10 @@ export default function install (Vue, options) {
     methods: {
       clearAxeConsole () {
         resetCache()
-        console.clear()
+
+        if (options.clearConsoleOnUpdate) {
+          console.clear()
+        }
       },
       debounceAxe: debounce(function () {
         this.clearAxeConsole()
