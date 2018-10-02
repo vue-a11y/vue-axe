@@ -1,4 +1,5 @@
 import axeCore from 'axe-core'
+import debounce from 'lodash.debounce'
 import { checkAndReport, resetCache } from './utils'
 import { OPTIONS_DEFAULT } from './constants'
 
@@ -13,15 +14,19 @@ export default function install (Vue, options) {
   Vue.mixin({
     methods: {
       clearAxeConsole () {
-        console.clear()
         resetCache()
-      }
+        console.clear()
+      },
+      debounceAxe: debounce(function () {
+        this.clearAxeConsole()
+
+        this.$nextTick(() => {
+          checkAndReport(this.$el)
+        })
+      }, 2000, { maxWait: 6000 })
     },
     updated () {
-      this.clearAxeConsole()
-      this.$nextTick(() => {
-        checkAndReport(this.$el)
-      })
+      this.debounceAxe()
     },
     // Used for change of route
     beforeDestroy () {
