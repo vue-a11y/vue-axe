@@ -30,7 +30,6 @@ if (process.env.NODE_ENV !== 'production') {
       ]
     }
   })
-  Vue.config.productionTip = false
 }
 ```
 
@@ -49,7 +48,6 @@ if (process.env.NODE_ENV !== 'production') {
       // your configuration data
     }
   })
-  Vue.config.productionTip = false
 }
 
 ```
