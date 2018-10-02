@@ -18,10 +18,10 @@ export default function install (Vue, options) {
   // Rechecking when updating specific component
   Vue.mixin({
     methods: {
-      clearAxeConsole () {
+      clearAxeConsole (forceClear = false) {
         resetCache()
 
-        if (options.clearConsoleOnUpdate) {
+        if (forceClear && options.clearConsoleOnUpdate) {
           console.clear()
         }
       },
@@ -29,7 +29,7 @@ export default function install (Vue, options) {
         this.clearAxeConsole()
 
         this.$nextTick(() => {
-          checkAndReport(this.$el)
+          checkAndReport(options, this.$el)
         })
       }, 2000, { maxWait: 6000 })
     },
@@ -38,9 +38,9 @@ export default function install (Vue, options) {
     },
     // Used for change of route
     beforeDestroy () {
-      this.clearAxeConsole()
+      this.clearAxeConsole(true)
     }
   })
 
-  return Vue.nextTick().then(() => checkAndReport(document))
+  return Vue.nextTick().then(() => checkAndReport(options, document))
 }

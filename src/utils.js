@@ -9,7 +9,7 @@ let nodes = []
 let deferred = {}
 let lastNotification = ''
 
-export function checkAndReport (node) {
+export function checkAndReport (options, node) {
   nodes.push(node)
   let deferred = createDeferred()
 
@@ -17,6 +17,10 @@ export function checkAndReport (node) {
     if (error) deferred.reject(error)
     if (!results) return
     if (JSON.stringify(results.violations) === lastNotification) return
+
+    if (options.clearConsoleOnUpdate) {
+      console.clear()
+    }
 
     results.violations = results.violations.filter(result => {
       result.nodes = result.nodes.filter(node => {
