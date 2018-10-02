@@ -7,6 +7,7 @@ import {
 let cache = {}
 let nodes = []
 let deferred = {}
+let lastNotification = ''
 
 export function checkAndReport (node) {
   nodes.push(node)
@@ -15,6 +16,7 @@ export function checkAndReport (node) {
   axeCore.run(document, { reporter: 'v2' }, (error, results) => {
     if (error) deferred.reject(error)
     if (!results) return
+    if (JSON.stringify(results.violations) === lastNotification) return
 
     results.violations = results.violations.filter(result => {
       result.nodes = result.nodes.filter(node => {
@@ -40,6 +42,8 @@ export function checkAndReport (node) {
       console.groupEnd()
     }
     deferred.resolve()
+
+    lastNotification = JSON.stringify(results.violations)
   })
   return deferred.promise
 }
