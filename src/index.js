@@ -1,6 +1,6 @@
 import axeCore from 'axe-core'
 import debounce from 'lodash.debounce'
-import { checkAndReport, resetCache } from './utils'
+import { checkAndReport, resetCache, resetLastNotification } from './utils'
 import { OPTIONS_DEFAULT } from './constants'
 
 export default function install (Vue, options) {
@@ -23,6 +23,7 @@ export default function install (Vue, options) {
 
         if (forceClear && options.clearConsoleOnUpdate) {
           console.clear()
+          resetLastNotification()
         }
       },
       debounceAxe: debounce(function () {

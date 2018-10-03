@@ -56,6 +56,10 @@ export function resetCache () {
   cache = {}
 }
 
+export function resetLastNotification () {
+  lastNotification = ''
+}
+
 function createDeferred () {
   deferred.promise = new Promise((resolve, reject) => {
     deferred.resolve = resolve
