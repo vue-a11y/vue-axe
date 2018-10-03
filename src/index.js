@@ -32,7 +32,7 @@ export default function install (Vue, options) {
         this.$nextTick(() => {
           checkAndReport(options, this.$el)
         })
-      }, 2000, { maxWait: 6000 })
+      }, 1000, { maxWait: 5000 })
     },
     updated () {
       this.debounceAxe()
