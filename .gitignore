@@ -1,6 +1,5 @@
 .idea
 node_modules
-dist
 .editorconfig
 .DS_Store
 demo/vue-axe.js
