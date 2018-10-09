@@ -1,10 +1,16 @@
 import axeCore from 'axe-core'
-import { checkAndReport, resetCache } from './utils'
+import debounce from 'lodash.debounce'
+import { checkAndReport, resetCache, resetLastNotification } from './utils'
 import { OPTIONS_DEFAULT } from './constants'
 
 export default function install (Vue, options) {
   // Browser only
   if (typeof window === 'undefined') return
+
+  options = {
+    clearConsoleOnUpdate: true,
+    ...options
+  }
 
   // Configure the format data
   axeCore.configure({ ...OPTIONS_DEFAULT.config, ...options.config })
@@ -12,22 +18,30 @@ export default function install (Vue, options) {
   // Rechecking when updating specific component
   Vue.mixin({
     methods: {
-      clearAxeConsole () {
-        console.clear()
+      clearAxeConsole (forceClear = false) {
         resetCache()
-      }
+
+        if (forceClear && options.clearConsoleOnUpdate) {
+          console.clear()
+          resetLastNotification()
+        }
+      },
+      debounceAxe: debounce(function () {
+        this.clearAxeConsole()
+
+        this.$nextTick(() => {
+          checkAndReport(options, this.$el)
+        })
+      }, 1000, { maxWait: 5000 })
     },
     updated () {
-      this.clearAxeConsole()
-      this.$nextTick(() => {
-        checkAndReport(this.$el)
-      })
+      this.debounceAxe()
     },
     // Used for change of route
     beforeDestroy () {
-      this.clearAxeConsole()
+      this.clearAxeConsole(true)
     }
   })
 
-  return Vue.nextTick().then(() => checkAndReport(document))
+  return Vue.nextTick().then(() => checkAndReport(options, document))
 }

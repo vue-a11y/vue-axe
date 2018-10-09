@@ -7,14 +7,20 @@ import {
 let cache = {}
 let nodes = []
 let deferred = {}
+let lastNotification = ''
 
-export function checkAndReport (node) {
+export function checkAndReport (options, node) {
   nodes.push(node)
   let deferred = createDeferred()
 
   axeCore.run(document, { reporter: 'v2' }, (error, results) => {
     if (error) deferred.reject(error)
     if (!results) return
+    if (JSON.stringify(results.violations) === lastNotification) return
+
+    if (options.clearConsoleOnUpdate) {
+      console.clear()
+    }
 
     results.violations = results.violations.filter(result => {
       result.nodes = result.nodes.filter(node => {
@@ -40,12 +46,18 @@ export function checkAndReport (node) {
       console.groupEnd()
     }
     deferred.resolve()
+
+    lastNotification = JSON.stringify(results.violations)
   })
   return deferred.promise
 }
 
 export function resetCache () {
   cache = {}
+}
+
+export function resetLastNotification () {
+  lastNotification = ''
 }
 
 function createDeferred () {

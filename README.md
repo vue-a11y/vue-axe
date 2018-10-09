@@ -1,6 +1,6 @@
 # vue-axe
 
-Accessibility auditing for Vue.js applications (Inspired by [dequelabs/react-axe](https://github.com/dequelabs/react-axe))
+Accessibility auditing for Vue.js applications by running [dequelabs/axe-core](https://github.com/dequelabs/axe-core/) validation on the page your viewing, `axe-core` will run 1 second after the last VueJS update (with a 5 seconds debounce max wait). Package inspired by [dequelabs/react-axe](https://github.com/dequelabs/react-axe).
 
 ## Install package
 #### NPM
@@ -30,12 +30,13 @@ if (process.env.NODE_ENV !== 'production') {
       ]
     }
   })
-  Vue.config.productionTip = false
 }
 ```
-
-Optional: You can also pass settings through the second parameter at the time of installing the plugin, read about the object here:  
-https://github.com/dequelabs/axe-core/blob/master/doc/API.md#api-name-axeconfigure
+#### Configuration
+|Key|Description|Default|Required|
+|---|---|---|---|
+|`clearConsoleOnUpdate`|Clears the console each time `vue-axe` runs|`true`|`false`|
+|`config`|Provide your Axe-core configuration: https://github.com/dequelabs/axe-core/blob/master/doc/API.md#api-name-axeconfigure| |`false`|
 
 ## Install in Nuxt.js
 Create plugin file `plugins/axe.js`
@@ -49,7 +50,6 @@ if (process.env.NODE_ENV !== 'production') {
       // your configuration data
     }
   })
-  Vue.config.productionTip = false
 }
 
 ```

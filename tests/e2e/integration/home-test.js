@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import VueAxe from '../../../vue-axe'
+import VueAxe from '../../../dist/vue-axe'
 
 const config = {
   rules: [

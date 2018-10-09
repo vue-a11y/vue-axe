@@ -1,5 +1,5 @@
+.idea
 node_modules
-dist
 .editorconfig
 .DS_Store
 demo/vue-axe.js
@@ -7,3 +7,4 @@ demo/node_modules
 demo/dist
 demo/CNAME
 demo/package-lock.json
+cypress

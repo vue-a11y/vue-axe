@@ -5,7 +5,16 @@
 ## Build Setup
 
 ``` bash
-# install dependencies
+# install vue-axe dependencies (root project / parent directory)
+npm install
+
+# build vue-axe
+npm run dist
+
+# switch to demo folder
+cd demo
+
+# install demo dependencies
 npm install
 
 # serve with hot reload at localhost:8080
