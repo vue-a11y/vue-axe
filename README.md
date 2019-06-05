@@ -83,7 +83,7 @@ https://vue-axe.surge.sh/
 ## Run the demo
 ```shell
 git clone https://github.com/vue-a11y/vue-axe.git vue-axe-demo
-cd demo
+cd vue-axe-demo
 npm install
 npm run dev
 ```
