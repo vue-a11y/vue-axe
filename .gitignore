@@ -8,3 +8,4 @@ demo/dist
 demo/CNAME
 demo/package-lock.json
 cypress
+dist
