@@ -7,6 +7,7 @@ import commonJs from 'rollup-plugin-commonjs'
 
 export default {
   input: 'src/index.js',
+  external: ['axe-core'],
   plugins: [
     babel({
       exclude: './node_modules/**'
@@ -23,7 +24,10 @@ export default {
     {
       name: 'VueAxe',
       file: 'dist/vue-axe.js',
-      format: 'umd'
+      format: 'umd',
+      globals: {
+        'axe-core': 'axeCore'
+      }
     }
   ]
 }
