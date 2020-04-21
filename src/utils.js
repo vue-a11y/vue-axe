@@ -31,7 +31,7 @@ export function checkAndReport (options, node) {
   return deferred.promise
 }
 
-const standardResultHandler = function(error, results) {
+const standardResultHandler = function (errorInfo, results) {
   results.violations = results.violations.filter(result => {
     result.nodes = result.nodes.filter(node => {
       let key = node.target.toString() + result.id

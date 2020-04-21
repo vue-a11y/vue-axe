@@ -36,7 +36,26 @@ if (process.env.NODE_ENV !== 'production') {
 |Key|Description|Default|Required|
 |---|---|---|---|
 |`clearConsoleOnUpdate`|Clears the console each time `vue-axe` runs|`true`|`false`|
+|`customResultHandler`|Handle the results from an `axe.run()`. This may be needed for automated tests.|`undefined`|`false`|
 |`config`|Provide your Axe-core configuration: https://github.com/dequelabs/axe-core/blob/master/doc/API.md#api-name-axeconfigure| |`false`|
+
+#### Custom Result Handler
+
+The `customResultHandler` config property expects a callback like the `axe.run()` callback ([see documentation](https://github.com/dequelabs/axe-core/blob/master/doc/API.md#parameters-axerun)). It will be triggered after each call to `axe.run()`. 
+
+```javascript
+import Vue from 'vue'
+
+if (process.env.NODE_ENV !== 'production') {
+  const VueAxe = require('vue-axe')
+  Vue.use(VueAxe, {
+    customResultHandler: (error, results) => {
+      results.violations.forEach(violation => console.log(violation))
+    }
+    // ...
+  })
+}
+``` 
 
 ## Install in Nuxt.js
 Create plugin file `plugins/axe.js`
