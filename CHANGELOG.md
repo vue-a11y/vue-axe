@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/vue-a11y/vue-axe/compare/v1.0.8...v1.1.0) (2020-04-22)
+
+
+### Features
+
+* add custom result handler ([8c5c81b](https://github.com/vue-a11y/vue-axe/commit/8c5c81b))
+
+
+
 <a name="1.0.8"></a>
 ## [1.0.8](https://github.com/vue-a11y/vue-axe/compare/v1.0.7...v1.0.8) (2020-01-24)
 
