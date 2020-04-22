@@ -36,7 +36,8 @@ if (process.env.NODE_ENV !== 'production') {
 |Key|Description|Default|Required|
 |---|---|---|---|
 |`clearConsoleOnUpdate`|Clears the console each time `vue-axe` runs|`true`|`false`|
-|`config`|Provide your Axe-core configuration: https://github.com/dequelabs/axe-core/blob/master/doc/API.md#api-name-axeconfigure| |`false`|
+|`config`|Provide your Axe-core configuration: [API Name: axe.configure](https://github.com/dequelabs/axe-core/blob/master/doc/API.md#api-name-axeconfigure)| |`false`|
+|`runOptions`|Provide your Axe-core runtime options: [API Name: axe.run](https://github.com/dequelabs/axe-core/blob/master/doc/API.md#options-parameter)|`{ reporter: 'v2', resultTypes: ['violations'] }`|`false`|
 
 ## Install in Nuxt.js
 Create plugin file `plugins/axe.js`

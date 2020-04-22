@@ -9,6 +9,10 @@ export default function install (Vue, options) {
 
   options = {
     clearConsoleOnUpdate: true,
+    runOptions: {
+      reporter: 'v2',
+      resultTypes: ['violations']
+    },
     ...options
   }
 

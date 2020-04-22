@@ -13,7 +13,7 @@ export function checkAndReport (options, node) {
   nodes.push(node)
   let deferred = createDeferred()
 
-  axeCore.run(document, { reporter: 'v2' }, (error, results) => {
+  axeCore.run(document, options.runOptions, (error, results) => {
     if (error) deferred.reject(error)
     if (!results) return
     if (JSON.stringify(results.violations) === lastNotification) return
