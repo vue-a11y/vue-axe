@@ -38,6 +38,7 @@ if (process.env.NODE_ENV !== 'production') {
 |`clearConsoleOnUpdate`|Clears the console each time `vue-axe` runs|`true`|`false`|
 |`customResultHandler`|Handle the results from an `axe.run()`. This may be needed for automated tests.|`undefined`|`false`|
 |`config`|Provide your Axe-core configuration: https://github.com/dequelabs/axe-core/blob/master/doc/API.md#api-name-axeconfigure| |`false`|
+|`runOptions`|Provide your Axe-core runtime options: [API Name: axe.run](https://github.com/dequelabs/axe-core/blob/master/doc/API.md#options-parameter)|`{ reporter: 'v2', resultTypes: ['violations'] }`|`false`|
 
 #### Custom Result Handler
 
