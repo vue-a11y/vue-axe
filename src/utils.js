@@ -22,34 +22,39 @@ export function checkAndReport (options, node) {
       console.clear()
     }
 
-    results.violations = results.violations.filter(result => {
-      result.nodes = result.nodes.filter(node => {
-        let key = node.target.toString() + result.id
-        let retVal = (!cache[key])
-        cache[key] = key
-        return retVal
-      })
-      return (!!result.nodes.length)
-    })
+    options.customResultHandler ? options.customResultHandler(error, results) : standardResultHandler(error, results)
 
-    if (results.violations.length) {
-      console.group('%cNew aXe issues', STYLE.head)
-      results.violations.forEach(result => {
-        let styl = IMPACT.hasOwnProperty(result.impact) ? IMPACT[result.impact] : IMPACT.minor
-        console.groupCollapsed('%c%s: %c%s %s', STYLE[styl], result.impact, STYLE.defaultReset, result.help, result.helpUrl)
-        result.nodes.forEach(function (node) {
-          failureSummary(node, 'any')
-          failureSummary(node, 'none')
-        })
-        console.groupEnd()
-      })
-      console.groupEnd()
-    }
     deferred.resolve()
 
     lastNotification = JSON.stringify(results.violations)
   })
   return deferred.promise
+}
+
+const standardResultHandler = function (errorInfo, results) {
+  results.violations = results.violations.filter(result => {
+    result.nodes = result.nodes.filter(node => {
+      let key = node.target.toString() + result.id
+      let retVal = (!cache[key])
+      cache[key] = key
+      return retVal
+    })
+    return (!!result.nodes.length)
+  })
+
+  if (results.violations.length) {
+    console.group('%cNew aXe issues', STYLE.head)
+    results.violations.forEach(result => {
+      let styl = IMPACT.hasOwnProperty(result.impact) ? IMPACT[result.impact] : IMPACT.minor
+      console.groupCollapsed('%c%s: %c%s %s', STYLE[styl], result.impact, STYLE.defaultReset, result.help, result.helpUrl)
+      result.nodes.forEach(function (node) {
+        failureSummary(node, 'any')
+        failureSummary(node, 'none')
+      })
+      console.groupEnd()
+    })
+    console.groupEnd()
+  }
 }
 
 export function resetCache () {

@@ -59,6 +59,6 @@
     "vue-template-compiler": "^2.6.11"
   },
   "dependencies": {
-    "axe-core": "^3.4.1"
+    "axe-core": "3.5.3"
   }
 }
