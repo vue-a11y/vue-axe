@@ -1,17 +1,14 @@
 import axeCore from 'axe-core'
-import {
-  IMPACT,
-  STYLE
-} from './constants'
+import { IMPACT, STYLE } from './constants'
 
 let cache = {}
-let nodes = []
-let deferred = {}
+const nodes = []
+const deferred = {}
 let lastNotification = ''
 
 export function checkAndReport (options, node) {
   nodes.push(node)
-  let deferred = createDeferred()
+  const deferred = createDeferred()
 
   axeCore.run(document, options.runOptions, (error, results) => {
     if (error) deferred.reject(error)
@@ -34,8 +31,8 @@ export function checkAndReport (options, node) {
 const standardResultHandler = function (errorInfo, results) {
   results.violations = results.violations.filter(result => {
     result.nodes = result.nodes.filter(node => {
-      let key = node.target.toString() + result.id
-      let retVal = (!cache[key])
+      const key = node.target.toString() + result.id
+      const retVal = (!cache[key])
       cache[key] = key
       return retVal
     })
@@ -45,7 +42,7 @@ const standardResultHandler = function (errorInfo, results) {
   if (results.violations.length) {
     console.group('%cNew aXe issues', STYLE.head)
     results.violations.forEach(result => {
-      let styl = IMPACT.hasOwnProperty(result.impact) ? IMPACT[result.impact] : IMPACT.minor
+      const styl = IMPACT[result.impact] || IMPACT.minor
       console.groupCollapsed('%c%s: %c%s %s', STYLE[styl], result.impact, STYLE.defaultReset, result.help, result.helpUrl)
       result.nodes.forEach(function (node) {
         failureSummary(node, 'any')
