@@ -1,10 +1,9 @@
-import resolve from 'rollup-plugin-node-resolve'
-import replace from 'rollup-plugin-replace'
-import VueLoader from 'rollup-plugin-vue'
-import babel from 'rollup-plugin-babel'
-import commonJs from 'rollup-plugin-commonjs'
-import eslint from 'rollup-plugin-eslint'
+import buble from '@rollup/plugin-buble'
+import commonJs from '@rollup/plugin-commonjs'
+import resolve from '@rollup/plugin-node-resolve'
 import chokidar from 'chokidar'
+import { eslint } from 'rollup-plugin-eslint'
+import vue from 'rollup-plugin-vue'
 
 export default {
   input: 'src/index.js',
@@ -13,24 +12,25 @@ export default {
     include: ['src/**']
   },
   plugins: [
+    resolve(),
+    commonJs(),
     eslint({
       include: './src/**'
     }),
-    babel({
-      exclude: './node_modules/**'
+    buble({
+      objectAssign: true
     }),
-    resolve(),
-    commonJs(),
-    VueLoader(),
-    replace({
-      'process.env.NODE_ENV': JSON.stringify('development')
-    })
+    vue()
   ],
   output: [
     {
       name: 'VueAxe',
       file: 'demo/vue-axe.js',
-      format: 'umd'
+      format: 'umd',
+      exports: 'named',
+      globals: {
+        'axe-core': 'axeCore'
+      }
     }
   ]
 }

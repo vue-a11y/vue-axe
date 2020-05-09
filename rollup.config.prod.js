@@ -1,33 +1,32 @@
-import resolve from 'rollup-plugin-node-resolve'
-import replace from 'rollup-plugin-replace'
-import VueLoader from 'rollup-plugin-vue'
-import butternut from 'rollup-plugin-butternut'
-import babel from 'rollup-plugin-babel'
-import commonJs from 'rollup-plugin-commonjs'
+import buble from '@rollup/plugin-buble'
+import commonjs from '@rollup/plugin-commonjs'
+import resolve from '@rollup/plugin-node-resolve'
+import replace from '@rollup/plugin-replace'
+import peerDepsExternal from 'rollup-plugin-peer-deps-external'
+import { terser } from 'rollup-plugin-terser'
+import vue from 'rollup-plugin-vue'
 
 export default {
   input: 'src/index.js',
   external: ['axe-core'],
   plugins: [
-    babel({
-      exclude: './node_modules/**'
-    }),
-    butternut(),
+    peerDepsExternal(),
     resolve(),
-    commonJs(),
-    VueLoader(),
+    commonjs(),
     replace({
       'process.env.NODE_ENV': JSON.stringify('production')
-    })
+    }),
+    vue(),
+    buble({
+      objectAssign: true
+    }),
+    terser()
   ],
-  output: [
-    {
-      name: 'VueAxe',
-      file: 'dist/vue-axe.js',
-      format: 'umd',
-      globals: {
-        'axe-core': 'axeCore'
-      }
+  output: {
+    name: 'VueAxe',
+    exports: 'named',
+    globals: {
+      'axe-core': 'axeCore'
     }
-  ]
+  }
 }
