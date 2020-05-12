@@ -1,7 +1,7 @@
 import axeCore from 'axe-core'
-import { IMPACT, STYLE } from './constants'
 
 let cache = {}
+let style = {}
 const nodes = []
 const deferred = {}
 let lastNotification = ''
@@ -9,6 +9,7 @@ let lastNotification = ''
 export function checkAndReport (options, node) {
   nodes.push(node)
   const deferred = createDeferred()
+  style = { ...options.style }
 
   axeCore.run(document, options.runOptions, (error, results) => {
     if (error) deferred.reject(error)
@@ -40,10 +41,10 @@ const standardResultHandler = function (errorInfo, results) {
   })
 
   if (results.violations.length) {
-    console.group('%cNew aXe issues', STYLE.head)
+    console.group('%cNew axe issues', style.head)
+    console.log(results.violations)
     results.violations.forEach(result => {
-      const styl = IMPACT[result.impact] || IMPACT.minor
-      console.groupCollapsed('%c%s: %c%s %s', STYLE[styl], result.impact, STYLE.defaultReset, result.help, result.helpUrl)
+      console.groupCollapsed('%c%s%c %s %s %c%s', style[result.impact || 'minor'], result.impact, style.title, result.help, '\n', style.url, result.helpUrl)
       result.nodes.forEach(function (node) {
         failureSummary(node, 'any')
         failureSummary(node, 'none')
@@ -97,14 +98,14 @@ function failureSummary (node, key) {
 function logElement (node, logFn) {
   var el = document.querySelector(node.target.toString())
   if (!el) {
-    logFn('Selector: %c%s', STYLE.boldCourier, node.target.toString())
+    logFn('Selector: %c%s', style.boldCourier, node.target.toString())
   } else {
     logFn('Element: %o', el)
   }
 }
 
 function logHtml (node) {
-  console.log('HTML: %c%s', STYLE.boldCourier, node.html)
+  console.log('HTML: %c%s', style.boldCourier, node.html)
 }
 
 function logFailureMessage (node, key) {
