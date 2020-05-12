@@ -10,14 +10,7 @@ export default function install (Vue, options) {
   const defaultOptions = {
     clearConsoleOnUpdate: false,
     delay: 0,
-    config: {
-      checks: [{
-        id: 'color-contrast',
-        options: {
-          noScroll: true
-        }
-      }]
-    },
+    config: {},
     runOptions: {
       reporter: 'v2',
       resultTypes: ['violations']
