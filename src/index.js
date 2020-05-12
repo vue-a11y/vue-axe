@@ -36,33 +36,33 @@ export default function install (Vue, options) {
 
   options = merge(defaultOptions, options)
 
-  // Configure the format data
   axeCore.configure({ ...options.config })
 
-  // Rechecking when updating specific component
+  Vue.prototype.$axe = {
+    run ({ clearConsole = true, element = document } = {}) {
+      this.clearConsole(clearConsole)
+      if (!clearConsole) resetLastNotification()
+      Vue.nextTick().then(() => checkAndReport(options, element))
+    },
+    clearConsole (forceClear = false) {
+      resetCache()
+
+      if (forceClear || options.clearConsoleOnUpdate) {
+        console.clear()
+        resetLastNotification()
+      }
+    },
+    debounce: debounce(function () {
+      this.run({ clearConsole: options.clearConsoleOnUpdate })
+    }, 1000, { maxWait: 5000 })
+  }
+
   Vue.mixin({
     updated () {
-      this.debounceAxe()
+      this.$axe.debounce()
     },
     beforeDestroy () {
-      this.clearAxeConsole(true)
-    },
-    methods: {
-      clearAxeConsole (forceClear = false) {
-        resetCache()
-
-        if (forceClear || options.clearConsoleOnUpdate) {
-          console.clear()
-          resetLastNotification()
-        }
-      },
-      axeRun ({ clearConsole = false, element = document } = {}) {
-        this.clearAxeConsole(clearConsole)
-        this.$nextTick(() => checkAndReport(options, element))
-      },
-      debounceAxe: debounce(function () {
-        this.axeRun()
-      }, 1000, { maxWait: 5000 })
+      this.$axe.clearConsole(true)
     }
   })
 
