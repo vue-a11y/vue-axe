@@ -29,6 +29,26 @@
     "auditing"
   ],
   "author": "Alan Ktquez <ktquez@gmail.com> (https://github.com/ktquez/)",
+  "contributors": [
+    {
+      "name": "Josh",
+      "url": "https://github.com/MechJosh0"
+    },
+    {
+      "name": "Maarten Van Hoof",
+      "email": "info@mrtnvh.com",
+      "url": "https://github.com/vanhoofmaarten"
+    },
+    {
+      "name": "Takayuki Shimada",
+      "email": "taka@tsmd.jp",
+      "url": "https://github.com/tsmd"
+    },
+    {
+      "name": "Michael Große",
+      "url": "https://github.com/micgro42"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/vue-a11y/vue-axe/issues"
