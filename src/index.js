@@ -10,7 +10,11 @@ export default function install (Vue, options) {
   const defaultOptions = {
     clearConsoleOnUpdate: false,
     delay: 0,
-    config: {},
+    config: {
+      branding: {
+        application: 'vue-axe'
+      }
+    },
     runOptions: {
       reporter: 'v2',
       resultTypes: ['violations']
