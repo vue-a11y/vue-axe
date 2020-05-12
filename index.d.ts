@@ -9,6 +9,8 @@ export interface VueAxe
 {
     run({ clearConsole, element }: RunOptions): void;
 
+    plugins: Record<object>;
+
     clearConsole(forceClear: boolean): void;
     
     debounce(): void;

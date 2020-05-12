@@ -28,19 +28,25 @@ export default function install (Vue, options) {
       minor: 'padding:2px 4px;border-radius:5px;background-color:#333;color:#FFCE85;font-weight:normal;',
       title: 'font-color:black;font-weight:bold;',
       url: 'font-color:#4D4D4D;font-weight:normal;'
-    }
+    },
+    plugins: []
   }
 
   options = merge(defaultOptions, options)
 
   axeCore.configure({ ...options.config })
 
+  // register plugins
+  options.plugins.forEach(plugin => axeCore.registerPlugin(plugin))
+
+  // vue-axe methods in Vue Instance
   Vue.prototype.$axe = {
     run ({ clearConsole = true, element = document } = {}) {
       this.clearConsole(clearConsole)
       if (!clearConsole) resetLastNotification()
       Vue.nextTick().then(() => checkAndReport(options, element))
     },
+    plugins: axeCore.plugins,
     clearConsole (forceClear = false) {
       resetCache()
 
@@ -54,10 +60,12 @@ export default function install (Vue, options) {
     }, 1000, { maxWait: 5000 })
   }
 
+  // Rechecking when updating specific component
   Vue.mixin({
     updated () {
       this.$axe.debounce()
     },
+    // Used for change of route
     beforeDestroy () {
       this.$axe.clearConsole(true)
     }
