@@ -2,8 +2,10 @@ import axeCore from 'axe-core'
 
 let cache = {}
 let style = {}
-const deferred = {}
 let lastNotification = ''
+
+const deferred = {}
+const impacts = ['critical', 'serious', 'moderate', 'minor']
 
 export function checkAndReport (options, node) {
   const deferred = createDeferred()
@@ -40,8 +42,8 @@ const standardResultHandler = function (errorInfo, results) {
 
   if (results.violations.length) {
     console.group('%cNew axe issues', style.head)
-    console.log(results.violations)
-    results.violations.forEach(result => {
+    const violations = sortViolations(results.violations)
+    violations.forEach(result => {
       console.groupCollapsed('%c%s%c %s %s %c%s', style[result.impact || 'minor'], result.impact, style.title, result.help, '\n', style.url, result.helpUrl)
       result.nodes.forEach(function (node) {
         failureSummary(node, 'any')
@@ -59,6 +61,14 @@ export function resetCache () {
 
 export function resetLastNotification () {
   lastNotification = ''
+}
+
+function sortViolations (violations) {
+  let sorted = []
+  impacts.forEach(impact => {
+    sorted = [...sorted, ...violations.filter(violation => violation.impact === impact)]
+  })
+  return sorted
 }
 
 function createDeferred () {
