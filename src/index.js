@@ -8,7 +8,7 @@ export default function install (Vue, options) {
   if (typeof window === 'undefined') return
 
   const defaultOptions = {
-    clearConsoleOnUpdate: true,
+    clearConsoleOnUpdate: false,
     config: {
       checks: [{
         id: 'color-contrast',
@@ -43,7 +43,6 @@ export default function install (Vue, options) {
     updated () {
       this.debounceAxe()
     },
-    // Used for change of route
     beforeDestroy () {
       this.clearAxeConsole(true)
     },
@@ -51,14 +50,17 @@ export default function install (Vue, options) {
       clearAxeConsole (forceClear = false) {
         resetCache()
 
-        if (forceClear && options.clearConsoleOnUpdate) {
+        if (forceClear || options.clearConsoleOnUpdate) {
           console.clear()
           resetLastNotification()
         }
       },
+      axeRun ({ clearConsole = false, element = document } = {}) {
+        this.clearAxeConsole(clearConsole)
+        this.$nextTick(() => checkAndReport(options, element))
+      },
       debounceAxe: debounce(function () {
-        this.clearAxeConsole()
-        this.$nextTick(() => checkAndReport(options, this.$el))
+        this.axeRun()
       }, 1000, { maxWait: 5000 })
     }
   })

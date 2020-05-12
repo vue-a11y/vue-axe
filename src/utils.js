@@ -2,16 +2,14 @@ import axeCore from 'axe-core'
 
 let cache = {}
 let style = {}
-const nodes = []
 const deferred = {}
 let lastNotification = ''
 
 export function checkAndReport (options, node) {
-  nodes.push(node)
   const deferred = createDeferred()
   style = { ...options.style }
 
-  axeCore.run(document, options.runOptions, (error, results) => {
+  axeCore.run(node || document, options.runOptions, (error, results) => {
     if (error) deferred.reject(error)
     if (!results) return
     if (JSON.stringify(results.violations) === lastNotification) return
