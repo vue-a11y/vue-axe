@@ -9,6 +9,7 @@ export default function install (Vue, options) {
 
   const defaultOptions = {
     clearConsoleOnUpdate: false,
+    delay: 0,
     config: {
       checks: [{
         id: 'color-contrast',
@@ -65,5 +66,7 @@ export default function install (Vue, options) {
     }
   })
 
-  return Vue.nextTick().then(() => checkAndReport(options, document))
+  setTimeout(() => {
+    return Vue.nextTick().then(() => checkAndReport(options, document))
+  }, options.delay)
 }
