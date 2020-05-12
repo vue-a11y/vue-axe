@@ -59,7 +59,5 @@ export default function install (Vue, options) {
     }
   })
 
-  setTimeout(() => {
-    return Vue.nextTick().then(() => checkAndReport(options, document))
-  }, options.delay)
+  setTimeout(() => Vue.nextTick().then(() => checkAndReport(options, document)), options.delay)
 }

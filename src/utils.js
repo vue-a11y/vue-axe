@@ -21,9 +21,7 @@ export function checkAndReport (options, node) {
     }
 
     options.customResultHandler ? options.customResultHandler(error, results) : standardResultHandler(error, results)
-
     deferred.resolve()
-
     lastNotification = JSON.stringify(results.violations)
   })
   return deferred.promise
@@ -41,11 +39,11 @@ const standardResultHandler = function (errorInfo, results) {
   })
 
   if (results.violations.length) {
-    console.group('%cNew axe issues', style.head)
     const violations = sortViolations(results.violations)
+    console.group('%cNew axe issues', style.head)
     violations.forEach(result => {
       console.groupCollapsed('%c%s%c %s %s %c%s', style[result.impact || 'minor'], result.impact, style.title, result.help, '\n', style.url, result.helpUrl)
-      result.nodes.forEach(function (node) {
+      result.nodes.forEach(node => {
         failureSummary(node, 'any')
         failureSummary(node, 'none')
       })
@@ -86,30 +84,28 @@ function failureSummary (node, key) {
     logFailureMessage(node, key)
 
     var relatedNodes = []
-    node[key].forEach(function (check) {
+    node[key].forEach(check => {
       relatedNodes = relatedNodes.concat(check.relatedNodes)
     })
 
     if (relatedNodes.length > 0) {
       console.groupCollapsed('Related nodes')
-      relatedNodes.forEach(function (relatedNode) {
+      relatedNodes.forEach(relatedNode => {
         logElement(relatedNode, console.log)
         logHtml(relatedNode)
       })
       console.groupEnd()
     }
-
     console.groupEnd()
   }
 }
 
 function logElement (node, logFn) {
-  var el = document.querySelector(node.target.toString())
+  const el = document.querySelector(node.target.toString())
   if (!el) {
-    logFn('Selector: %c%s', style.boldCourier, node.target.toString())
-  } else {
-    logFn('Element: %o', el)
+    return logFn('Selector: %c%s', style.boldCourier, node.target.toString())
   }
+  logFn('Element: %o', el)
 }
 
 function logHtml (node) {
@@ -117,8 +113,10 @@ function logHtml (node) {
 }
 
 function logFailureMessage (node, key) {
-  var message = axeCore._audit.data.failureSummaries[key].failureMessage(node[key].map(function (check) {
-    return check.message || ''
-  }))
+  const message = axeCore._audit.data.failureSummaries[key]
+    .failureMessage(node[key]
+      .map(function (check) {
+        return check.message || ''
+      }))
   console.error(message)
 }
