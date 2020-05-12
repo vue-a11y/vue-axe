@@ -5,7 +5,7 @@ let style = {}
 let lastNotification = ''
 
 const deferred = {}
-const impacts = ['critical', 'serious', 'moderate', 'minor']
+const impacts = [...axeCore.constants.impact].reverse()
 
 export function checkAndReport (options, node) {
   const deferred = createDeferred()
