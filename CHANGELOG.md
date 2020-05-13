@@ -1,6 +1,15 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [1.2.0](https://github.com/vue-a11y/vue-axe/compare/v1.0.8...v1.2.0) (2020-05-13)
+
+
+### Features
+
+* add custom result handler ([8c5c81b](https://github.com/vue-a11y/vue-axe/commit/8c5c81b4f0f7227d9acba3c1a7b6c11692a89bc1))
+* Adding option to register and execute plugins ([fb21d52](https://github.com/vue-a11y/vue-axe/commit/fb21d52805bd7ae2ab4a6098e00ccc5e63ab9173))
+* Adding the "axeRun" method to trigger manually ([a1b856b](https://github.com/vue-a11y/vue-axe/commit/a1b856bc27b297c7199a802e37ac7b84046a3a75))
 
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/vue-a11y/vue-axe/compare/v1.0.8...v1.1.0) (2020-04-22)
