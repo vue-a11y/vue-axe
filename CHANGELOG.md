@@ -4,8 +4,12 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [2.0.0](https://github.com/vue-a11y/vue-axe/compare/v1.2.0...v2.0.0) (2020-05-13)
 
-## [1.2.0](https://github.com/vue-a11y/vue-axe/compare/v1.0.8...v1.2.0) (2020-05-13)
+### Breaking Changes
+- Now axe-core is a peerDependency (external) 
+  - e.g. `npm i -D axe-core vue-axe`
+- `clearConsoleOnUpdate` now is **false by default**
 
+## [1.2.0](https://github.com/vue-a11y/vue-axe/compare/v1.0.8...v1.2.0) (2020-05-13)
 
 ### Features
 
