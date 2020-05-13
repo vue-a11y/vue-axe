@@ -52,8 +52,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 ``` 
 
-### Run axe manually `$axe.run({ clearConsole: Boolean, element: Document | HTMLElement })`
+### Run axe manually
 The `$axe` is available on the property injected into the Vue instance, so it is available everywhere in your application. With it it is possible to execute the `$axe.run` method to check manually your document or any desired HTMLElement.
+
+#### `$axe.run({ clearConsole: Boolean, element: Document | HTMLElement })`
 
 ```vue
 <script>
