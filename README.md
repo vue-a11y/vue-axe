@@ -19,7 +19,7 @@ yarn add -D axe-core vue-axe
 import Vue from 'vue'
 
 if (process.env.NODE_ENV !== 'production') {
-  const VueAxe = require('vue-axe')
+  const VueAxe = require('vue-axe').default
   Vue.use(VueAxe)
 }
 ```
@@ -42,7 +42,7 @@ The `customResultHandler` config property expects a callback like the `axe.run()
 import Vue from 'vue'
 
 if (process.env.NODE_ENV !== 'production') {
-  const VueAxe = require('vue-axe')
+  const VueAxe = require('vue-axe').default
   Vue.use(VueAxe, {
     customResultHandler: (error, results) => {
       results.violations.forEach(violation => console.log(violation))
@@ -91,7 +91,7 @@ Create plugin file `plugins/axe.js`
 import Vue from 'vue'
 
 if (process.env.NODE_ENV !== 'production') {
-  const VueAxe = require('vue-axe')
+  const VueAxe = require('vue-axe').default
   Vue.use(VueAxe)
 }
 
