@@ -5,11 +5,17 @@ module.exports = {
     browser: true,
     node: true
   },
-  extends: 'standard',
+  extends: [
+    'plugin:vue/recommended',
+    '@vue/standard',
+  ],
   plugins: [
     "cypress"
   ],
-  // add your custom rules here
-  rules: {},
-  globals: {}
+  parserOptions: {
+    parser: 'babel-eslint'
+  },
+  rules: {
+    'no-console': 'off'
+  }  
 }

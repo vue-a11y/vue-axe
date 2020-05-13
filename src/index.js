@@ -1,51 +1,75 @@
 import axeCore from 'axe-core'
 import debounce from 'lodash.debounce'
+import merge from 'lodash.merge'
 import { checkAndReport, resetCache, resetLastNotification } from './utils'
-import { OPTIONS_DEFAULT } from './constants'
 
 export default function install (Vue, options) {
   // Browser only
   if (typeof window === 'undefined') return
 
-  options = {
-    clearConsoleOnUpdate: true,
+  const defaultOptions = {
+    clearConsoleOnUpdate: false,
+    delay: 0,
+    config: {
+      branding: {
+        application: 'vue-axe'
+      }
+    },
     runOptions: {
       reporter: 'v2',
       resultTypes: ['violations']
     },
-    ...options
+    style: {
+      head: 'padding:6px;font-size:20px;color:#333;font-weight:bold;',
+      boldCourier: 'font-weight:bold;font-family:Courier;',
+      moderate: 'padding:2px 4px;border-radius:5px;background-color:#FFBA52;color:#222;font-weight:normal;',
+      critical: 'padding:2px 4px;border-radius:5px;background-color:#AD0000;color:#fff;font-weight:normal;',
+      serious: 'padding:2px 4px;border-radius:5px;background-color:#333;color:#FFCE85;font-weight:normal;',
+      minor: 'padding:2px 4px;border-radius:5px;background-color:#333;color:#FFCE85;font-weight:normal;',
+      title: 'font-color:black;font-weight:bold;',
+      url: 'font-color:#4D4D4D;font-weight:normal;'
+    },
+    plugins: []
   }
 
-  // Configure the format data
-  axeCore.configure({ ...OPTIONS_DEFAULT.config, ...options.config })
+  options = merge(defaultOptions, options)
+
+  axeCore.configure({ ...options.config })
+
+  // register plugins
+  options.plugins.forEach(plugin => axeCore.registerPlugin(plugin))
+
+  // vue-axe methods in Vue Instance
+  Vue.prototype.$axe = {
+    run ({ clearConsole = true, element = document } = {}) {
+      this.clearConsole(clearConsole)
+      if (!clearConsole) resetLastNotification()
+      Vue.nextTick().then(() => checkAndReport(options, element))
+    },
+    plugins: axeCore.plugins,
+    clearConsole (forceClear = false) {
+      resetCache()
+
+      if (forceClear || options.clearConsoleOnUpdate) {
+        console.clear()
+        resetLastNotification()
+      }
+    },
+    debounce: debounce(function () {
+      this.run({ clearConsole: options.clearConsoleOnUpdate })
+    }, 1000, { maxWait: 5000 })
+  }
 
   // Rechecking when updating specific component
   Vue.mixin({
-    methods: {
-      clearAxeConsole (forceClear = false) {
-        resetCache()
-
-        if (forceClear && options.clearConsoleOnUpdate) {
-          console.clear()
-          resetLastNotification()
-        }
-      },
-      debounceAxe: debounce(function () {
-        this.clearAxeConsole()
-
-        this.$nextTick(() => {
-          checkAndReport(options, this.$el)
-        })
-      }, 1000, { maxWait: 5000 })
-    },
     updated () {
-      this.debounceAxe()
+      this.$axe.debounce()
     },
     // Used for change of route
     beforeDestroy () {
-      this.clearAxeConsole(true)
+      this.$axe.clearConsole(true)
     }
   })
 
-  return Vue.nextTick().then(() => checkAndReport(options, document))
+  setTimeout(() => Vue.nextTick().then(() => checkAndReport(options, document)), options.delay)
 }

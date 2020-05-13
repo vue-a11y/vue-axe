@@ -1,19 +1,17 @@
 import axeCore from 'axe-core'
-import {
-  IMPACT,
-  STYLE
-} from './constants'
 
 let cache = {}
-let nodes = []
-let deferred = {}
+let style = {}
 let lastNotification = ''
 
-export function checkAndReport (options, node) {
-  nodes.push(node)
-  let deferred = createDeferred()
+const deferred = {}
+const impacts = [...axeCore.constants.impact].reverse()
 
-  axeCore.run(document, options.runOptions, (error, results) => {
+export function checkAndReport (options, node) {
+  const deferred = createDeferred()
+  style = { ...options.style }
+
+  axeCore.run(node || document, options.runOptions, (error, results) => {
     if (error) deferred.reject(error)
     if (!results) return
     if (JSON.stringify(results.violations) === lastNotification) return
@@ -23,9 +21,7 @@ export function checkAndReport (options, node) {
     }
 
     options.customResultHandler ? options.customResultHandler(error, results) : standardResultHandler(error, results)
-
     deferred.resolve()
-
     lastNotification = JSON.stringify(results.violations)
   })
   return deferred.promise
@@ -34,8 +30,8 @@ export function checkAndReport (options, node) {
 const standardResultHandler = function (errorInfo, results) {
   results.violations = results.violations.filter(result => {
     result.nodes = result.nodes.filter(node => {
-      let key = node.target.toString() + result.id
-      let retVal = (!cache[key])
+      const key = node.target.toString() + result.id
+      const retVal = (!cache[key])
       cache[key] = key
       return retVal
     })
@@ -43,11 +39,11 @@ const standardResultHandler = function (errorInfo, results) {
   })
 
   if (results.violations.length) {
-    console.group('%cNew aXe issues', STYLE.head)
-    results.violations.forEach(result => {
-      let styl = IMPACT.hasOwnProperty(result.impact) ? IMPACT[result.impact] : IMPACT.minor
-      console.groupCollapsed('%c%s: %c%s %s', STYLE[styl], result.impact, STYLE.defaultReset, result.help, result.helpUrl)
-      result.nodes.forEach(function (node) {
+    const violations = sortViolations(results.violations)
+    console.group('%cNew axe issues', style.head)
+    violations.forEach(result => {
+      console.groupCollapsed('%c%s%c %s %s %c%s', style[result.impact || 'minor'], result.impact, style.title, result.help, '\n', style.url, result.helpUrl)
+      result.nodes.forEach(node => {
         failureSummary(node, 'any')
         failureSummary(node, 'none')
       })
@@ -65,6 +61,14 @@ export function resetLastNotification () {
   lastNotification = ''
 }
 
+function sortViolations (violations) {
+  let sorted = []
+  impacts.forEach(impact => {
+    sorted = [...sorted, ...violations.filter(violation => violation.impact === impact)]
+  })
+  return sorted
+}
+
 function createDeferred () {
   deferred.promise = new Promise((resolve, reject) => {
     deferred.resolve = resolve
@@ -80,39 +84,39 @@ function failureSummary (node, key) {
     logFailureMessage(node, key)
 
     var relatedNodes = []
-    node[key].forEach(function (check) {
+    node[key].forEach(check => {
       relatedNodes = relatedNodes.concat(check.relatedNodes)
     })
 
     if (relatedNodes.length > 0) {
       console.groupCollapsed('Related nodes')
-      relatedNodes.forEach(function (relatedNode) {
+      relatedNodes.forEach(relatedNode => {
         logElement(relatedNode, console.log)
         logHtml(relatedNode)
       })
       console.groupEnd()
     }
-
     console.groupEnd()
   }
 }
 
 function logElement (node, logFn) {
-  var el = document.querySelector(node.target.toString())
+  const el = document.querySelector(node.target.toString())
   if (!el) {
-    logFn('Selector: %c%s', STYLE.boldCourier, node.target.toString())
-  } else {
-    logFn('Element: %o', el)
+    return logFn('Selector: %c%s', style.boldCourier, node.target.toString())
   }
+  logFn('Element: %o', el)
 }
 
 function logHtml (node) {
-  console.log('HTML: %c%s', STYLE.boldCourier, node.html)
+  console.log('HTML: %c%s', style.boldCourier, node.html)
 }
 
 function logFailureMessage (node, key) {
-  var message = axeCore._audit.data.failureSummaries[key].failureMessage(node[key].map(function (check) {
-    return check.message || ''
-  }))
+  const message = axeCore._audit.data.failureSummaries[key]
+    .failureMessage(node[key]
+      .map(function (check) {
+        return check.message || ''
+      }))
   console.error(message)
 }
