@@ -15,7 +15,7 @@
     "test:e2e": "node_modules/.bin/cypress run --headless",
     "test:e2e:open": "node_modules/.bin/cypress open ",
     "project:publish": "git push --follow-tags origin master && npm publish",
-    "deploy": "surge ./demo"
+    "deploy": "surge ./demo https://vue-axe.surge.sh/"
   },
   "repository": {
     "type": "git",
