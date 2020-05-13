@@ -23,7 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
   Vue.use(VueAxe)
 }
 ```
-### Configuration
+## Configuration
 | Key                    | Type     | Description                                                   | Default    
 | ---------------------- | -------- |-------------------------------------------------------------- | -----------
 | `clearConsoleOnUpdate` | Boolean  | Clears the console each time `vue-axe` runs                   | `false`    
@@ -34,7 +34,7 @@ if (process.env.NODE_ENV !== 'production') {
 | `style`                | Object   | Customize style for console logs. | [See default style](https://github.com/vue-a11y/vue-axe/blob/master/src/index.js#L22) 
 | `plugins`              | Array    | Register Axe plugins. [Axe docs: Plugins](https://github.com/dequelabs/axe-core/blob/master/doc/plugins.md)
 
-#### Custom Result Handler
+### Custom Result Handler
 
 The `customResultHandler` config property expects a callback like the `axe.run()` callback ([see documentation](https://github.com/dequelabs/axe-core/blob/master/doc/API.md#parameters-axerun)). It will be triggered after each call to `axe.run()`. 
 
@@ -51,6 +51,37 @@ if (process.env.NODE_ENV !== 'production') {
   })
 }
 ``` 
+
+### Run axe manually `$axe.run({ clearConsole: Boolean, element: Document | HTMLElement })`
+The `$axe` is available on the property injected into the Vue instance, so it is available everywhere in your application. With it it is possible to execute the `$axe.run` method to check manually your document or any desired HTMLElement.
+
+```vue
+<script>
+//...
+  methods: {
+    axeRun() {
+      this.$axe.run({
+        clearConsole: false,
+        element: this.$el     // e.g. document, document.querySelector('.selector'), ...
+      })
+    }
+  }
+</script>
+```
+
+### Running custom axe plugins
+Learn more about [axe plugin](https://github.com/dequelabs/axe-core/blob/master/doc/plugins.md)
+
+```vue
+<script>
+//...
+  methods: {
+    handle () {
+      this.$axe.plugins.myPlugin.run()
+    }
+  }
+</script>
+```
 
 ## Install in Nuxt.js
 Create plugin file `plugins/axe.js`
