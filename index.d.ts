@@ -9,7 +9,7 @@ export interface VueAxe
 {
     run({ clearConsole, element }: RunOptions): void;
 
-    plugins: Record<object>;
+    plugins: Record<string, any>;
 
     clearConsole(forceClear: boolean): void;
     
@@ -24,7 +24,7 @@ declare module 'vue/types/vue'
     }
 }
 
-declare class VueAxe
+export declare class VueAxe
 {
     static install: PluginFunction<never>;
 }
