@@ -8,6 +8,7 @@ export default function install (Vue, options) {
   if (typeof window === 'undefined') return
 
   const defaultOptions = {
+    auto: true,
     clearConsoleOnUpdate: false,
     delay: 0,
     config: {
@@ -59,6 +60,9 @@ export default function install (Vue, options) {
       this.run({ clearConsole: options.clearConsoleOnUpdate })
     }, 1000, { maxWait: 5000 })
   }
+
+  // if false, disable automatic verification
+  if (!options.auto) return
 
   // Rechecking when updating specific component
   Vue.mixin({

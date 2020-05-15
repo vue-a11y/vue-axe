@@ -26,6 +26,7 @@ if (process.env.NODE_ENV !== 'production') {
 ## Configuration
 | Key                    | Type     | Description                                                   | Default    
 | ---------------------- | -------- |-------------------------------------------------------------- | -----------
+| `auto`                 | Boolean  | Disables automatic verification. Only checks with `$axe.run`  | `true`    
 | `clearConsoleOnUpdate` | Boolean  | Clears the console each time `vue-axe` runs                   | `false`    
 | `customResultHandler`  | Function | Handle the results. (This may be needed for automated tests)
 | `config`               | Object   | Provide your [Axe-core configuration](https://github.com/dequelabs/axe-core/blob/master/doc/API.md#api-name-axeconfigure)  | [See default config](https://github.com/vue-a11y/vue-axe/blob/master/src/index.js#L13) 

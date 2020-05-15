@@ -37,7 +37,7 @@
       @click="showAlt = !showAlt"
       v-text="showAlt ? 'Remove the alt tag from the logo' : 'Add an alt tag to the logo'"
     />
-    <button @click="correctedLinkColor = !correctedLinkColor">
+    <button @click="toggleLinkColor">
       Change links color
     </button>
 
@@ -99,29 +99,18 @@ export default {
   },
   data () {
     return {
-      // num: 0,
       correctedLinkColor: false,
       showAlt: false,
       scope: true
     }
   },
-  // mounted()
-  // {
-  //   this.updateNumber();
-  // },
-  // mounted () {
-  //   setTimeout(() => {
-  //     this.$axe.run({ clearConsole: false })
-  //   }, 5000)
-  // },
   methods: {
-    // updateNumber()
-    // {
-    //   setTimeout(() => {
-    //     this.num += 1;
-    //     this.updateNumber();
-    //   }, 500);
-    // }
+    toggleLinkColor () {
+      this.correctedLinkColor = !this.correctedLinkColor
+
+      // Using "auto: false" $axe.run working
+      // this.$axe.run()
+    }
   }
 }
 </script>
