@@ -41,7 +41,7 @@ export default function install (Vue, options) {
 
   // vue-axe methods in Vue Instance
   Vue.prototype.$axe = {
-    run ({ clearConsole = true, element = document } = {}) {
+    run ({ clearConsole = options.clearConsoleOnUpdate, element = document } = {}) {
       this.clearConsole(clearConsole)
       if (!clearConsole) resetLastNotification()
       Vue.nextTick().then(() => checkAndReport(options, element))
