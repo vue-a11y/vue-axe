@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/vue-a11y/vue-axe/compare/v2.0.0...v2.0.1) (2020-05-15)
+
+
+### Bug Fixes
+
+* address typescript compile issues ([fcf69fc](https://github.com/vue-a11y/vue-axe/commit/fcf69fc5d753d1adb46277effc54e93bda84124b))
+
 ## [2.0.0](https://github.com/vue-a11y/vue-axe/compare/v1.2.0...v2.0.0) (2020-05-13)
 
 ### Breaking Changes
