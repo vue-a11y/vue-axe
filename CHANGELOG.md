@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/vue-a11y/vue-axe/compare/v2.0.1...v2.1.0) (2020-05-15)
+
+
+### Features
+
+* Added "auto" option to manage automatic axe verification. ([efc99e1](https://github.com/vue-a11y/vue-axe/commit/efc99e16edaba73f50846cadf59d456dd19483db))
+
 ### [2.0.1](https://github.com/vue-a11y/vue-axe/compare/v2.0.0...v2.0.1) (2020-05-15)
 
 
