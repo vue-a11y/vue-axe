@@ -1,21 +1,21 @@
 module.exports = {
   root: true,
   env: {
-    "cypress/globals": true,
+    'cypress/globals': true,
     browser: true,
     node: true
   },
   extends: [
     'plugin:vue/recommended',
-    '@vue/standard',
+    '@vue/standard'
   ],
   plugins: [
-    "cypress"
+    'cypress'
   ],
   parserOptions: {
     parser: 'babel-eslint'
   },
   rules: {
     'no-console': 'off'
-  }  
+  }
 }
