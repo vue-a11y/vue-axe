@@ -1,27 +1,19 @@
-# testing-vue-axe
+# demo
 
-> Testing accessibility rules in  Vue.js Applications with vue-axe
-
-## Build Setup
-
-``` bash
-# install vue-axe dependencies (root project / parent directory)
+## Project setup
+```
 npm install
+```
 
-# build vue-axe
-npm run dist
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-# switch to demo folder
-cd demo
-
-# install demo dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
+### Compiles and minifies for production
+```
 npm run build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

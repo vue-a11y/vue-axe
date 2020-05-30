@@ -1,10 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Home from '@/pages/Home'
-import About from '@/pages/About'
-import Contact from '@/pages/Contact'
-
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -13,7 +9,7 @@ const router = new VueRouter({
     {
       name: 'home',
       path: '/',
-      component: Home,
+      component: () => import('@/views/Home'),
       meta: {
         announcer: 'Home page'
       }
@@ -21,7 +17,7 @@ const router = new VueRouter({
     {
       name: 'about',
       path: '/about',
-      component: About,
+      component: () => import('@/views/About'),
       meta: {
         announcer: 'About page'
       }
@@ -29,9 +25,17 @@ const router = new VueRouter({
     {
       name: 'contact',
       path: '/contact',
-      component: Contact,
+      component: () => import('@/views/Contact'),
       meta: {
         announcer: 'Contact page'
+      }
+    },
+    {
+      name: 'test',
+      path: '/test',
+      component: () => import('@/views/Test'),
+      meta: {
+        announcer: 'Test page'
       }
     }
   ]

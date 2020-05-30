@@ -1,23 +1,22 @@
 <template>
   <div>
-    <h1>About page</h1>
+    <h1>Contact page</h1>
     <!-- Force aXe errors -->
     <section role="ljks">
       <p role="button">
-        My content
+        Contact me
         <router-link to="/">Go to Home</router-link>
-        <router-link to="/contact">Contact</router-link>
       </p>
     </section>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'About'
-  }
+export default {
+  name: 'Contact'
+}
 </script>
 
-<style scoped>
+<style>
 
 </style>
