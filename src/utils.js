@@ -13,7 +13,7 @@ export function checkAndReport (options, node) {
 
   axeCore.run(node || document, options.runOptions, (error, results) => {
     if (error) deferred.reject(error)
-    if (!results) return
+    if (results && !results.violations.length) return
     if (JSON.stringify(results.violations) === lastNotification) return
 
     if (options.clearConsoleOnUpdate) {
@@ -60,6 +60,8 @@ export function resetCache () {
 export function resetLastNotification () {
   lastNotification = ''
 }
+
+export const draf = (cb) => requestAnimationFrame(() => requestAnimationFrame(cb))
 
 function sortViolations (violations) {
   let sorted = []

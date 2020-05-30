@@ -1,7 +1,7 @@
 import axeCore from 'axe-core'
 import debounce from 'lodash.debounce'
 import merge from 'lodash.merge'
-import { checkAndReport, resetCache, resetLastNotification } from './utils'
+import { checkAndReport, draf, resetCache, resetLastNotification } from './utils'
 
 export default function install (Vue, options) {
   // Browser only
@@ -44,20 +44,18 @@ export default function install (Vue, options) {
   Vue.prototype.$axe = {
     run ({ clearConsole = options.clearConsoleOnUpdate, element = document } = {}) {
       this.clearConsole(clearConsole)
-      if (!clearConsole) resetLastNotification()
-      Vue.nextTick().then(() => checkAndReport(options, element))
+      draf(() => checkAndReport(options, element))
     },
     plugins: axeCore.plugins,
     clearConsole (forceClear = false) {
       resetCache()
-
       if (forceClear || options.clearConsoleOnUpdate) {
         console.clear()
         resetLastNotification()
       }
     },
     debounce: debounce(function () {
-      this.run({ clearConsole: options.clearConsoleOnUpdate })
+      this.run()
     }, 1000, { maxWait: 5000 })
   }
 
@@ -75,5 +73,5 @@ export default function install (Vue, options) {
     }
   })
 
-  setTimeout(() => Vue.nextTick().then(() => checkAndReport(options, document)), options.delay)
+  setTimeout(() => draf(() => checkAndReport(options, document)), options.delay)
 }
