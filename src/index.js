@@ -3,6 +3,8 @@ import debounce from 'lodash.debounce'
 import merge from 'lodash.merge'
 import { checkAndReport, draf, resetCache, resetLastNotification } from './utils'
 
+let firstCheck = false
+
 export default function install (Vue, options) {
   // Browser only
   if (typeof window === 'undefined') return
@@ -42,7 +44,7 @@ export default function install (Vue, options) {
 
   // vue-axe methods in Vue Instance
   Vue.prototype.$axe = {
-    run ({ clearConsole = options.clearConsoleOnUpdate, element = document } = {}) {
+    run ({ clearConsole = options.clearConsoleOnUpdate, element } = {}) {
       this.clearConsole(clearConsole)
       draf(() => checkAndReport(options, element))
     },
@@ -55,7 +57,8 @@ export default function install (Vue, options) {
       }
     },
     debounce: debounce(function () {
-      this.run()
+      resetCache()
+      draf(() => checkAndReport(options))
     }, 1000, { maxWait: 5000 })
   }
 
@@ -65,13 +68,13 @@ export default function install (Vue, options) {
   // Rechecking when updating specific component
   Vue.mixin({
     updated () {
-      this.$axe.debounce()
+      if (firstCheck) return this.$axe.debounce()
+      firstCheck = true
+      setTimeout(() => this.$axe.debounce(), options.delay)
     },
     // Used for change of route
     beforeDestroy () {
       this.$axe.clearConsole(true)
     }
   })
-
-  setTimeout(() => draf(() => checkAndReport(options, document)), options.delay)
 }
