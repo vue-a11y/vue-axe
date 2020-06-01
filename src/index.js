@@ -31,13 +31,13 @@ export default function install (Vue, options) {
 
   const checkWithDebounce = debounce(function () {
     resetCache()
-    draf(() => checkAndReport(options))
+    draf(() => checkAndReport(options, this.$el))
   }, 1000, { maxWait: 5000 })
 
   // Rechecking when updating specific component
   Vue.mixin({
     updated () {
-      checkWithDebounce()
+      checkWithDebounce.call(this)
     },
     // Used for change of route
     beforeDestroy () {
