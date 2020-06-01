@@ -13,7 +13,7 @@ Accessibility auditing for Vue.js applications by running [dequelabs/axe-core](h
 
 Follow us on Twitter [@vue_a11y](https://twitter.com/vue_a11y)
 
-**thank you**
+**Thank you**
 
 
 
