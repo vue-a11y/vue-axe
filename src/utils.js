@@ -5,7 +5,7 @@ export const draf = (cb) => requestAnimationFrame(() => requestAnimationFrame(cb
 export const defaultOptions = {
   auto: true,
   clearConsoleOnUpdate: false,
-  delay: 0,
+  delay: 500,
   config: {
     branding: {
       application: 'vue-axe'

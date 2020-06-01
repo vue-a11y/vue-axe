@@ -44,4 +44,7 @@ export default function install (Vue, options) {
       clear(true, options)
     }
   })
+
+  // First check
+  setTimeout(() => draf(() => checkAndReport(options, document)), options.delay)
 }

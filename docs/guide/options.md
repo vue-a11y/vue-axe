@@ -78,7 +78,7 @@ Learn more about [Axe-core runtime options](https://github.com/dequelabs/axe-cor
 
 | Type     | Default  |
 | -------- | -------- |
-| Number   | `0`      | 
+| Number   | `500`    | 
 
 Used only to delay the first check.
 
