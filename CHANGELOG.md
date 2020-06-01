@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/vue-a11y/vue-axe/compare/v2.1.1...v2.2.0) (2020-06-01)
+
+
+### Features
+
+* Add documentation ([2f32681](https://github.com/vue-a11y/vue-axe/commit/2f32681e7f0c4822dfddde8194936e06b413a853))
+
+
+### Bug Fixes
+
+* **checkAndReport:** Using double requestAnimationFrame to checkAndReport ([0c59ff9](https://github.com/vue-a11y/vue-axe/commit/0c59ff9dab03e8d1d08ac2e8cbe292d996128d20))
+* **types:** More detailed typescript support ([f097f3a](https://github.com/vue-a11y/vue-axe/commit/f097f3adf044107821701a14f82864fee8fd3c6b))
+
 ### [2.1.1](https://github.com/vue-a11y/vue-axe/compare/v2.1.0...v2.1.1) (2020-05-30)
 
 
