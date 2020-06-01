@@ -12,11 +12,16 @@
     "build:umd": "rollup --config rollup.config.prod.js --format umd --file dist/vue-axe.umd.js",
     "build:es": "rollup --config rollup.config.prod.js --format es --file dist/vue-axe.esm.js",
     "build:unpkg": "rollup --config rollup.config.prod.js --format iife --file dist/vue-axe.min.js",
+    "demo:dev": "cd demo && npm run serve",
+    "demo:build": "cd demo && npm run build",
+    "demo:publish": "surge ./demo/dist https://vue-axe.surge.sh/",
+    "docs:dev": "./node_modules/.bin/vuepress dev docs --no-cache",
+    "docs:build": "./node_modules/.bin/vuepress build docs --no-cache && echo axe.vue-a11y.com >> docs/.vuepress/dist/CNAME",
+    "docs:publish": "gh-pages -d docs/.vuepress/dist",
     "release": "standard-version",
     "test:e2e": "node_modules/.bin/cypress run --headless",
     "test:e2e:open": "node_modules/.bin/cypress open",
-    "project:publish": "git push --follow-tags origin master && npm publish",
-    "deploy": "surge ./demo/dist https://vue-axe.surge.sh/"
+    "project:publish": "git push --follow-tags origin master && npm publish"
   },
   "repository": {
     "type": "git",
@@ -72,6 +77,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "eslint-plugin-vue": "^6.2.2",
+    "gh-pages": "^3.0.0",
     "lodash.debounce": "^4.0.8",
     "lodash.merge": "^4.6.2",
     "rollup": "^2.8.2",
@@ -81,7 +87,10 @@
     "rollup-plugin-vue": "^5.1.6",
     "standard-version": "^8.0.0",
     "vue": "^2.6.11",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "vuepress": "^1.5.0",
+    "vuepress-theme-default-vue-a11y": "^0.1.10",
+    "watchpack": "^1.6.1"
   },
   "peerDependencies": {
     "axe-core": "3.5.3"
