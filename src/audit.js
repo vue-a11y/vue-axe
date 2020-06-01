@@ -7,7 +7,7 @@ let lastNotification = ''
 const deferred = {}
 const impacts = [...axeCore.constants.impact].reverse()
 
-export function checkAndReport (options, node) {
+export function checkAndReport (options, node, label) {
   const deferred = createDeferred()
   style = { ...options.style }
 
@@ -20,14 +20,14 @@ export function checkAndReport (options, node) {
       console.clear()
     }
 
-    options.customResultHandler ? options.customResultHandler(error, results) : standardResultHandler(error, results)
+    options.customResultHandler ? options.customResultHandler(error, results) : standardResultHandler(error, results, label)
     deferred.resolve()
     lastNotification = JSON.stringify(results.violations)
   })
   return deferred.promise
 }
 
-const standardResultHandler = function (errorInfo, results) {
+const standardResultHandler = function (errorInfo, results, label) {
   results.violations = results.violations.filter(result => {
     result.nodes = result.nodes.filter(node => {
       const key = node.target.toString() + result.id
@@ -40,7 +40,7 @@ const standardResultHandler = function (errorInfo, results) {
 
   if (results.violations.length) {
     const violations = sortViolations(results.violations)
-    console.group('%cNew axe issues', style.head)
+    console.group(`%cAxe issues ${label ? '- ' + label : ''}`, style.head)
     violations.forEach(result => {
       console.groupCollapsed('%c%s%c %s %s %c%s', style[result.impact || 'minor'], result.impact, style.title, result.help, '\n', style.url, result.helpUrl)
       result.nodes.forEach(node => {

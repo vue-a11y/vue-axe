@@ -19,9 +19,9 @@ export default function install (Vue, options) {
 
   // vue-axe methods in Vue Instance
   Vue.prototype.$axe = {
-    run ({ clearConsole = options.clearConsoleOnUpdate, element } = {}) {
+    run ({ clearConsole = options.clearConsoleOnUpdate, element, label } = {}) {
       clear(clearConsole, options)
-      draf(() => checkAndReport(options, element))
+      draf(() => checkAndReport(options, element, (label || 'Run manually')))
     },
     plugins: axeCore.plugins
   }
@@ -30,8 +30,9 @@ export default function install (Vue, options) {
   if (!options.auto) return
 
   const checkWithDebounce = debounce(function () {
+    const componentsName = this.$options.name || ''
     resetCache()
-    draf(() => checkAndReport(options, this.$el))
+    draf(() => checkAndReport(options, this.$el, componentsName))
   }, 1000, { maxWait: 5000 })
 
   // Rechecking when updating specific component
@@ -46,5 +47,5 @@ export default function install (Vue, options) {
   })
 
   // First check
-  setTimeout(() => draf(() => checkAndReport(options, document)), options.delay)
+  setTimeout(() => draf(() => checkAndReport(options, document, 'App')), options.delay)
 }

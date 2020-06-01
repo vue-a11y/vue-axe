@@ -12,13 +12,15 @@ To execute the `$axe.run` method to check manually your document or any desired 
 | ------------- | ------------------------ | ----------------------------------
 | clearConsole  | Boolean                  | The same as `clearConsoleOnUpdate`
 | element       | Document or HTMLElement  | `document`
+| label         | Strong                   | `Run manually`
 
 ```js
 methods: {
   axeRun() {
     this.$axe.run({
       clearConsole: true,
-      element: this.$el     // or document, document.querySelector('.selector'), ...
+      element: this.$el,     // or document, document.querySelector('.selector'), ...
+      label: 'Logo component'
     })
   }
 }
