@@ -1,11 +1,11 @@
 {
   "name": "vue-axe",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Dynamic accessibility analysis for Vue.js using axe-core",
-  "main": "./dist/vue-axe.umd.js",
-  "module": "./dist/vue-axe.esm.js",
-  "unpkg": "./dist/vue-axe.min.js",
-  "types": "./index.d.ts",
+  "main": "dist/vue-axe.umd.js",
+  "module": "dist/vue-axe.esm.js",
+  "unpkg": "dist/vue-axe.min.js",
+  "types": "index.d.ts",
   "scripts": {
     "dev": "rollup --config rollup.config.dev.js --watch",
     "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
