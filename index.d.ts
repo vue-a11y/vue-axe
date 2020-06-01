@@ -89,7 +89,7 @@ export interface AxeRunOptions {
   /**
    * Log rule performance metrics to the console
    */
-  performanceTimer?: boolean,
+  performanceTimer?: boolean
 }
 
 export interface VueAxeStyle {
@@ -135,17 +135,12 @@ export interface VueAxeOptions {
   /** 
    * Handle the results. (This may be needed for automated tests)
    */
-  customResultHandler?: (error: any, results: any),
+  customResultHandler?: (error: any, results: any)
 }
 
 export interface VueAxe {
   run({ clearConsole, element }: RunOptions): void;
-
   plugins: Record<string, any>;
-
-  clearConsole(forceClear: boolean): void;
-  
-  debounce(): void;
 }
 
 declare module 'vue/types/vue' {
