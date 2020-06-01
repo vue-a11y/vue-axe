@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/vue-a11y/vue-axe/compare/v2.2.1...v2.3.0) (2020-06-01)
+
+
+### Features
+
+* **checkAndReport:** Add the checked component name in log title ([b6317e9](https://github.com/vue-a11y/vue-axe/commit/b6317e99dd111560654dcc11c19ef48beb8f1508))
+* **checkAndReport:** Check only the updated component ([672f261](https://github.com/vue-a11y/vue-axe/commit/672f261902e9190fcfd172f846e6fe5ae7bef0ae))
+
+
+### Bug Fixes
+
+* Add delay 500 to first check ([ba488b0](https://github.com/vue-a11y/vue-axe/commit/ba488b027b398acce021a1d155a444567b555da1))
+
 ### [2.2.2](https://github.com/vue-a11y/vue-axe/compare/v2.2.1...v2.2.2) (2020-06-01)
 
 ### [2.2.1](https://github.com/vue-a11y/vue-axe/compare/v2.2.0...v2.2.1) (2020-06-01)
