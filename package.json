@@ -21,7 +21,7 @@
     "release": "standard-version",
     "test:e2e": "node_modules/.bin/cypress run --headless",
     "test:e2e:open": "node_modules/.bin/cypress open",
-    "project:publish": "git push --follow-tags origin master && npm publish"
+    "project:publish": "git push --tags origin master && npm publish"
   },
   "repository": {
     "type": "git",
@@ -89,7 +89,7 @@
     "vue": "^2.6.11",
     "vue-template-compiler": "^2.6.11",
     "vuepress": "^1.5.0",
-    "vuepress-theme-default-vue-a11y": "^0.1.10",
+    "vuepress-theme-default-vue-a11y": "^0.1.13",
     "watchpack": "^1.6.1"
   },
   "peerDependencies": {
