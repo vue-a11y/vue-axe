@@ -1,8 +1,10 @@
 module.exports = {
   theme: 'default-vue-a11y',
   title: 'Vue Axe',
+  description: 'Accessibility auditing for Vue.js applications.',
   head: [
     ['meta', { name: 'theme-color', content: '#fff' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }]
   ],
   themeConfig: {
     home: false,
