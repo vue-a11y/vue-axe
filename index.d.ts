@@ -13,129 +13,129 @@ export interface AxeConfig {
     /**
      * string(optional) sets the brand string - default "axe"
      */
-    brand?: string,
+    brand?: string;
     /**
      * string(optional) sets the application string - default "axeAPI"
      */
-    application?: string
-  },
+    application?: string;
+  };
   /**
    * Used to set the output format that the axe.run function will pass to the callback function
    */
-  reporter?: string,
+  reporter?: string;
   /**
    * Used to add checks to the list of checks used by rules, or to override the properties of existing checks
    */
-  checks?: any,
+  checks?: any;
   /**
    * Used to add rules to the existing set of rules, or to override the properties of existing rules
    */
-  rules?: any,
+  rules?: any;
   /**
    * A locale object to apply (at runtime) to all rules and checks, in the same shape as /locales/*.json.
    */
-  locale?: any,
+  locale?: any;
   /**
    * Set the compatible version of a custom rule with the current axe version. Compatible versions are all patch and minor updates that are the same as, or newer than those of the `axeVersion` property
    */
-  axeVersion?: string
+  axeVersion?: string;
 }
 
 export interface AxeRunOptions {
   /**
    * Limit which rules are executed, based on names or tags
    */
-  runOnly?: any,
+  runOnly?: any;
   /**
    * Allow customizing a rule's properties (including { enable: false })
    */
-  rules?: any,
+  rules?: any;
   /**
    * Which reporter to use
    */
-  reporter?: string,
+  reporter?: string;
   /**
    * Limit which result types are processed and aggregated
    */
-  resultTypes?: any,
+  resultTypes?: any;
   /**
    * Return xpath selectors for elements
    */
-  xpath?: boolean,
+  xpath?: boolean;
   /**
    * Use absolute paths when creating element selectors
    */
-  absolutePaths?: boolean,
+  absolutePaths?: boolean;
   /**
    * Tell axe to run inside iframes
    */
-  iframes?: boolean,
+  iframes?: boolean;
   /**
    * Return element references in addition to the target
    */
-  elementRef?: boolean,
+  elementRef?: boolean;
   /**
    * Scrolls elements back to before axe started
    */
-  restoreScroll?: boolean,
+  restoreScroll?: boolean;
   /**
    * How long (in milliseconds) axe waits for a response from embedded frames before timing out
    */
-  frameWaitTime?: number,
+  frameWaitTime?: number;
   /**
    * Any additional assets (eg: cssom) to preload before running rules
    */
-  preload?: boolean,
+  preload?: boolean;
   /**
    * Log rule performance metrics to the console
    */
-  performanceTimer?: boolean
+  performanceTimer?: boolean;
 }
 
 export interface VueAxeStyle {
-  head?: string,
-  boldCourier?: string,
-  moderate?: string,
-  critical?: string,
-  serious?: string,
-  minor?: string,
-  title?: string,
-  url?: string
+  head?: string;
+  boldCourier?: string;
+  moderate?: string;
+  critical?: string;
+  serious?: string;
+  minor?: string;
+  title?: string;
+  url?: string;
 }
 
 export interface VueAxeOptions {
   /**
    * Disables automatic verification. Only checks with $axe.run
    */
-  auto?: boolean,
+  auto?: boolean;
   /**
    * Clears the console each time vue-axe runs
    */
-  clearConsoleOnUpdate?: boolean,
+  clearConsoleOnUpdate?: boolean;
   /**
    * Provide your Axe-core configuration
    */
-  config?: AxeConfig,
+  config?: AxeConfig;
   /**
    * Provide your Axe-core runtime options
    */
-  runOptions?: AxeRunOptions,
+  runOptions?: AxeRunOptions;
   /**
    * Used to delay the first check. - `Millisecond`
    */
-  delay?: number
+  delay?: number;
   /**
    * 
    */
-  style?: VueAxeStyle,
+  style?: VueAxeStyle;
   /**
    * Register Axe plugins
    */
-  plugins?: any[],
+  plugins?: any[];
   /** 
    * Handle the results. (This may be needed for automated tests)
    */
-  customResultHandler?: (error: any, results: any)
+  customResultHandler?: (error: any, results: any);
 }
 
 export interface VueAxe {
