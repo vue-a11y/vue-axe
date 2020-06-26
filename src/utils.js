@@ -16,7 +16,7 @@ export const defaultOptions = {
     resultTypes: ['violations']
   },
   style: {
-    head: 'padding:6px;font-size:20px;color:#333;font-weight:bold;',
+    head: 'padding:6px;font-size:20px;font-weight:bold;',
     boldCourier: 'font-weight:bold;font-family:Courier;',
     moderate: 'padding:2px 4px;border-radius:5px;background-color:#FFBA52;color:#222;font-weight:normal;',
     critical: 'padding:2px 4px;border-radius:5px;background-color:#AD0000;color:#fff;font-weight:normal;',
