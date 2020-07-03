@@ -3,7 +3,7 @@ import VueAxe from '../vue-axe'
 import App from './App.vue'
 import router from './router'
 
-// Don't use this plugin in production => if (process.env.NODE_ENV !== 'production')
+// Use this plugin only development => if (process.env.NODE_ENV === 'development')
 Vue.use(VueAxe)
 Vue.config.productionTip = false
 
