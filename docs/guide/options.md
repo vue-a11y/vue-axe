@@ -23,7 +23,7 @@ To check manually, use [$axe.run](/guide/api.html#run)
 
 | Type     | Default  |
 | -------- | -------- |
-| Boolean  | `true`  | 
+| Boolean  | `true`   | 
 
 If false, disables all console clears (overriding `clearConsoleOnUpdate`).
 
