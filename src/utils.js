@@ -4,6 +4,7 @@ export const draf = (cb) => requestAnimationFrame(() => requestAnimationFrame(cb
 
 export const defaultOptions = {
   auto: true,
+  allowConsoleClears: true,
   clearConsoleOnUpdate: false,
   delay: 500,
   config: {
@@ -31,7 +32,9 @@ export const defaultOptions = {
 export function clear (forceClear = false, options) {
   resetCache()
   if (forceClear || options.clearConsoleOnUpdate) {
-    console.clear()
     resetLastNotification()
+    if (options.allowConsoleClears) {
+      console.clear()
+    }
   }
 }
