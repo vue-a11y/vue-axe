@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/vue-a11y/vue-axe/compare/v2.3.1...v2.4.0) (2020-07-31)
+
+
+### Features
+
+* add option 'allowConsoleClears' ([a71f444](https://github.com/vue-a11y/vue-axe/commit/a71f44444ae87f9c10ec74b5da66b768ea6944ea))
+
+
+### Bug Fixes
+
+* Title log in console inherit to support light and dark mode ([d4807d1](https://github.com/vue-a11y/vue-axe/commit/d4807d1e32c7f5e8a6e3791d1fe08b852ad350b2))
+
 ### [2.3.1](https://github.com/vue-a11y/vue-axe/compare/v2.3.0...v2.3.1) (2020-06-15)
 
 
