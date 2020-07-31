@@ -19,13 +19,27 @@ Vue.use(VueAxe, {
 To check manually, use [$axe.run](/guide/api.html#run)
 :::
 
+## allowConsoleClears
+
+| Type     | Default  |
+| -------- | -------- |
+| Boolean  | `true`   | 
+
+If false, disables all console clears (overriding `clearConsoleOnUpdate`).
+
+```js
+Vue.use(VueAxe, {
+  allowConsoleClears: false // disable all console clears 
+})
+```
+
 ## clearConsoleOnUpdate
 
 | Type     | Default  |
 | -------- | -------- |
 | Boolean  | `false`  | 
 
-If true, clean the console each time the component is updated.
+If true, clean the console each time the component is updated. No effect if `allowConsoleClears = false`.
 
 ```js
 Vue.use(VueAxe, {
