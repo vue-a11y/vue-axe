@@ -93,6 +93,6 @@
     "watchpack": "^1.6.1"
   },
   "peerDependencies": {
-    "axe-core": "3.5.3"
+    "axe-core": "^3.5.3"
   }
 }
