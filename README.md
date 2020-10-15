@@ -2,6 +2,8 @@
 
 Accessibility auditing for Vue.js applications by running [dequelabs/axe-core](https://github.com/dequelabs/axe-core/) validation on the page you're viewing, `axe-core` will run 1 second after the last VueJS update (with a 5 seconds debounce max wait). Package inspired by [dequelabs/react-axe](https://github.com/dequelabs/react-axe).
 
+**NOTE: You can use [vue-axe-next](https://github.com/vue-a11y/vue-axe-next) for Vue.js 3**
+
 ## Links
 - [Documentation](https://axe.vue-a11y.com)
 - [Demo](https://vue-axe.surge.sh/)
