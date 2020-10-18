@@ -135,7 +135,7 @@ export interface VueAxeOptions {
   /** 
    * Handle the results. (This may be needed for automated tests)
    */
-  customResultHandler?: (error: any, results: any);
+  customResultHandler?: (error: any, results: any) => any;
 }
 
 export interface VueAxe {
