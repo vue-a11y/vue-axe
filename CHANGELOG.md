@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.3](https://github.com/vue-a11y/vue-axe/compare/v2.4.2...v2.4.3) (2020-11-15)
+
 ### [2.4.2](https://github.com/vue-a11y/vue-axe/compare/v2.4.1...v2.4.2) (2020-10-18)
 
 ### [2.4.1](https://github.com/vue-a11y/vue-axe/compare/v2.4.0...v2.4.1) (2020-09-08)
