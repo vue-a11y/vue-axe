@@ -1,10 +1,9 @@
 import axeCore from 'axe-core'
-import debounce from 'lodash.debounce'
-import merge from 'lodash.merge'
+import merge from 'deepmerge'
 import { checkAndReport, resetCache } from './audit'
 import { clear, defaultOptions, draf } from './utils'
 
-export default function install (Vue, options) {
+export default function install (Vue, options = {}) {
   // Browser only
   if (typeof window === 'undefined') return
 
@@ -29,16 +28,18 @@ export default function install (Vue, options) {
   // if false, disable automatic verification
   if (!options.auto) return
 
-  const checkWithDebounce = debounce(function () {
+  function axeRun () {
     const componentsName = this.$options.name || ''
     resetCache()
     draf(() => checkAndReport(options, this.$el, componentsName))
-  }, 1000, { maxWait: 5000 })
+  }
 
   // Rechecking when updating specific component
+  let timeout = null
   Vue.mixin({
     updated () {
-      checkWithDebounce.call(this)
+      timeout && clearTimeout(timeout)
+      timeout = setTimeout(axeRun.bind(this), 2500)
     },
     // Used for change of route
     beforeDestroy () {
