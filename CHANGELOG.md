@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.4](https://github.com/vue-a11y/vue-axe/compare/v2.4.3...v2.4.4) (2020-12-11)
+
+
+### Bug Fixes
+
+* Console error in Nuxt app ([c6f03a7](https://github.com/vue-a11y/vue-axe/commit/c6f03a7c73829164f95c0319bb57380c84c64897))
+
 ### [2.4.3](https://github.com/vue-a11y/vue-axe/compare/v2.4.2...v2.4.3) (2020-11-15)
 
 ### [2.4.2](https://github.com/vue-a11y/vue-axe/compare/v2.4.1...v2.4.2) (2020-10-18)

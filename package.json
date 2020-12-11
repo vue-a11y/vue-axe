@@ -1,6 +1,6 @@
 {
   "name": "vue-axe",
-  "version": "2.4.3",
+  "version": "2.4.4",
   "description": "Dynamic accessibility analysis for Vue.js using axe-core",
   "main": "dist/vue-axe.umd.js",
   "module": "dist/vue-axe.esm.js",
