@@ -1,0 +1,75 @@
+{
+  "name": "vue-axe",
+  "description": "Dynamic accessibility analysis for Vue.js 3 using axe-core",
+  "version": "3.1.2",
+  "author": "Alan Ktquez <ktquez@gmail.com> (https://github.com/ktquez/)",
+  "main": "dist/vue-axe.umd.js",
+  "browser": "dist/vue-axe.es.js",
+  "module": "dist/vue-axe.es.js",
+  "unpkg": "dist/vue-axe.umd.js",
+  "jsdelivr": "dist/vue-axe.umd.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-axe.es.js",
+      "require": "./dist/vue-axe.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "cd demo && vite",
+    "build": "npm-run-all -s clean build:*",
+    "build:vite": "vite build",
+    "release": "standard-version",
+    "project:publish": "git push --tags origin next && yarn build && npm publish --tag next"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vue-a11y/vue-axe.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vue-a11y/vue-axe/issues"
+  },
+  "homepage": "https://github.com/vue-a11y/vue-axe#readme",
+  "keywords": [
+    "accessibility",
+    "a11y",
+    "vue.js",
+    "vue",
+    "3",
+    "test",
+    "auditing",
+    "vue-axe",
+    "axe-core",
+    "deque",
+    "axe"
+  ],
+  "dependencies": {
+    "prismjs": "^1.23.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.2.2",
+    "@vue-a11y/focus-loop": "^1.1.0",
+    "@vue/compiler-sfc": "^3.0.5",
+    "@vue/eslint-config-standard": "^6.0.0",
+    "axe-core": "^4.2.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.25.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "eslint-plugin-vue": "^7.9.0",
+    "eslint-plugin-vuejs-accessibility": "^0.6.1",
+    "merge": "^2.1.1",
+    "npm-run-all": "^4.1.5",
+    "standard-version": "^9.2.0",
+    "vite": "^2.2.4"
+  },
+  "peerDependencies": {
+    "axe-core": "^4.0.0",
+    "vue": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "license": "MIT"
+}

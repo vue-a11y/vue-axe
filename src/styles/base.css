@@ -1,0 +1,30 @@
+:root {
+  --va-bg: white;
+  --va-padding: 16px;
+  --va-color:  #222;
+  --va-primary: #fbfcfc;
+  --va-border-color: #dfe8e8;
+  --va-outline-color: var(--va-color);
+  --va-critical: #D93251;
+  --va-serious:#DB006E;
+  --va-moderate: #996B00;
+  --va-minor: #000;
+  --va-notification: #FF885B;
+  --va-font-family: 'Segoe UI', Roboto, 'Fira Sans', Helvetica, 'Helvetica Neue', sans-serif;
+}
+
+.va-popup * {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.va-btn {
+  background: none;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  font-family: inherit;
+}
