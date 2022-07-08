@@ -7,6 +7,7 @@ export const defaultOptions = {
   allowConsoleClears: true,
   clearConsoleOnUpdate: false,
   delay: 500,
+  element: null,
   config: {
     branding: {
       application: 'vue-axe'
