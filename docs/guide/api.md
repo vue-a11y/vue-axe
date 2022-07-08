@@ -11,7 +11,7 @@ To execute the `$axe.run` method to check manually your document or any desired 
 | Key           | Type                     | Default 
 | ------------- | ------------------------ | ----------------------------------
 | clearConsole  | Boolean                  | The same as `clearConsoleOnUpdate`
-| element       | Document or HTMLElement  | `document`
+| element       | Document or HTMLElement  | `element` from [options](/guide/options.html#element) or `document`
 | label         | Strong                   | `Run manually`
 
 ```js
