@@ -11,7 +11,7 @@ export function checkAndReport (options, node, label) {
   const deferred = createDeferred()
   style = { ...options.style }
 
-  axeCore.run(node || document, options.runOptions, (error, results) => {
+  axeCore.run(node || options.element || document, options.runOptions, (error, results) => {
     if (error) deferred.reject(error)
     if (results && !results.violations.length) return
     if (JSON.stringify(results.violations) === lastNotification) return

@@ -132,7 +132,8 @@ export default {
 
     handleManualButton () {
       this.$axe.run({
-        clearConsole: true
+        clearConsole: true,
+        element: document
       })
     }
   }

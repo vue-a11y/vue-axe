@@ -96,6 +96,24 @@ Learn more about [Axe-core runtime options](https://github.com/dequelabs/axe-cor
 
 Used only to delay the first check.
 
+## element
+
+| Type     | Default  |
+| -------- | -------- |
+| String   | `null`   |
+
+A [CSS selector](https://github.com/dequelabs/axe-core/blob/develop/doc/developer-guide.md#supported-css-selectors) that selects the default portion of the document to be analyzed. Once it's set up, it's used with manually checks using [$axe.run](/guide/api.html#run).
+
+```js
+Vue.use(VueAxe, {
+  element: '#app'
+})
+```
+
+::: tip
+Even the CSS selector accepts `Document` or `HTMLElement` objects; if the `querySelector` is used before the page loads, an empty object may be registered, causing undesired behaviour
+:::
+
 ## style
 
 | Type     |

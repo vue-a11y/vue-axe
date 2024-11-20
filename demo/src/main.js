@@ -4,7 +4,9 @@ import App from './App.vue'
 import router from './router'
 
 // Use this plugin only development => if (process.env.NODE_ENV === 'development')
-Vue.use(VueAxe)
+Vue.use(VueAxe, {
+  element: '#app'
+})
 Vue.config.productionTip = false
 
 new Vue({
